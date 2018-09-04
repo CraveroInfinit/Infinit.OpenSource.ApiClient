@@ -8,7 +8,7 @@ namespace Infinit.ApiClient.UnitTest.ApiModel
 {
     public class SendModel
     {
-        public int id { get; set; }
-        public string values { get; set; }
+        public int Id { get; set; }
+        public string Values { get; set; }
     }
 }

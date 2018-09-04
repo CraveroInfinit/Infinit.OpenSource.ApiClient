@@ -90,8 +90,8 @@ namespace Infinit.ApiClient.UnitTest
         {
             var resultMethod = new ApiModel.SendModel
             {
-                id = 321654,
-                values = "produto"
+                Id = 321654,
+                Values = "produto"
             };
 
             var API = new APIClient();
@@ -104,42 +104,42 @@ namespace Infinit.ApiClient.UnitTest
         {
             var resultMethod = new ApiModel.SendModel
             {
-                id = 321654,
-                values = "produto"
+                Id = 321654,
+                Values = "produto"
             };
 
             var API = new APIClient();
             var response = (ApiModel.SendModel)API.PostarJSON(URLTest, resultMethod, typeof(ApiModel.SendModel)).Result.Result;
 
-            Assert.AreEqual(resultMethod.id, response.id);
+            Assert.AreEqual(resultMethod.Id, response.Id);
         }
         [TestMethod]
         public void ApiClientTest_TestaPutJSON_ReturnObjetoPostado()
         {
             var resultMethod = new ApiModel.SendModel
             {
-                id = 321654,
-                values = "produto"
+                Id = 321654,
+                Values = "produto"
             };
 
             var API = new APIClient();
             var response = (ApiModel.SendModel)API.PutJSON(URLTest, resultMethod, typeof(ApiModel.SendModel)).Result.Result;
 
-            Assert.AreEqual(resultMethod.id, response.id);
+            Assert.AreEqual(resultMethod.Id, response.Id);
         }
         [TestMethod]
         public void ApiClientTest_TestaDeleteJSON_ReturnObjetoPostado()
         {
             var resultMethod = new ApiModel.SendModel
             {
-                id = 321654,
-                values = "produto"
+                Id = 321654,
+                Values = "produto"
             };
 
             var API = new APIClient();
             var response = (ApiModel.SendModel)API.DeletarJSON(URLTest, 1, typeof(ApiModel.SendModel)).Result.Result;
 
-            Assert.AreEqual(new ApiModel.SendModel().id, response.id);
+            Assert.AreEqual(new ApiModel.SendModel().Id, response.Id);
         }
         #endregion
     }
