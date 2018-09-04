@@ -56,7 +56,7 @@ namespace Infinit.ApiClient
             var client = new HttpClient();
             if (!string.IsNullOrEmpty(authorization))
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", authorization);
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(System.Net.WebUtility.UrlDecode(authorization));
             }
             var result = client.GetAsync(uriComParametros.ToString()).Result;
             var contents = await result.Content.ReadAsStringAsync();
@@ -79,9 +79,9 @@ namespace Infinit.ApiClient
             var client = new HttpClient();
             if (!string.IsNullOrEmpty(authorization))
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", System.Net.WebUtility.UrlDecode(authorization));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(System.Net.WebUtility.UrlDecode(authorization));
             }
-            var result = await client.GetAsync(uriComParametros.ToString());
+            var result = client.GetAsync(uriComParametros.ToString()).Result;
             var contents = await result.Content.ReadAsStringAsync();
             if (result.StatusCode == HttpStatusCode.NotAcceptable)
             {
@@ -102,9 +102,9 @@ namespace Infinit.ApiClient
             var client = new HttpClient();
             if (!string.IsNullOrEmpty(authorization))
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", System.Net.WebUtility.UrlDecode(authorization));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(System.Net.WebUtility.UrlDecode(authorization));
             }
-            var result = await client.GetAsync(uriComParametros.ToString());
+            var result = client.GetAsync(uriComParametros.ToString()).Result;
             var contents = await result.Content.ReadAsStringAsync();
             if (result.StatusCode == HttpStatusCode.NotAcceptable)
             {
@@ -122,11 +122,11 @@ namespace Infinit.ApiClient
             var client = new HttpClient();
             if (!string.IsNullOrEmpty(authorization))
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", System.Net.WebUtility.UrlDecode(authorization));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(System.Net.WebUtility.UrlDecode(authorization));
             }
             string jsonText = JsonConvert.SerializeObject(objetoASerPostado);
 
-            var result = await client.PostAsync(URI, new StringContent(jsonText, Encoding.UTF8, "application/json"));
+            var result = client.PostAsync(URI, new StringContent(jsonText, Encoding.UTF8, "application/json")).Result;
             var contents = await result.Content.ReadAsStringAsync();
             if (result.StatusCode == HttpStatusCode.NotAcceptable)
             {
@@ -143,11 +143,11 @@ namespace Infinit.ApiClient
             var client = new HttpClient();
             if (!string.IsNullOrEmpty(authorization))
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", System.Net.WebUtility.UrlDecode(authorization));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(System.Net.WebUtility.UrlDecode(authorization));
             }
             string jsonText = JsonConvert.SerializeObject(objetoASerPostado);
 
-            var result = await client.PostAsync(URI, new StringContent(jsonText, Encoding.UTF8, "application/json"));
+            var result = client.PostAsync(URI, new StringContent(jsonText, Encoding.UTF8, "application/json")).Result;
             var contents = await result.Content.ReadAsStringAsync();
             if (result.StatusCode == HttpStatusCode.NotAcceptable)
             {
@@ -165,7 +165,7 @@ namespace Infinit.ApiClient
             var client = new HttpClient();
             if (!string.IsNullOrEmpty(authorization))
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", System.Net.WebUtility.UrlDecode(authorization));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(System.Net.WebUtility.UrlDecode(authorization));
             }
             string jsonText = JsonConvert.SerializeObject(objetoASerPostado);
 
@@ -198,10 +198,10 @@ namespace Infinit.ApiClient
             var client = new HttpClient();
             if (!string.IsNullOrEmpty(authorization))
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", System.Net.WebUtility.UrlDecode(authorization));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(System.Net.WebUtility.UrlDecode(authorization));
             }
 
-            var result = await client.DeleteAsync(uriComParametros.ToString());
+            var result = client.DeleteAsync(uriComParametros.ToString()).Result;
             var contents = await result.Content.ReadAsStringAsync();
             if (result.StatusCode == HttpStatusCode.NotAcceptable)
             {

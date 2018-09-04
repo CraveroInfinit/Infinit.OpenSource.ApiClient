@@ -4,9 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>Infinit Soluções</Company>
     <PackageId>Infinit.OpenSource.ApiClient</PackageId>
-    <Authors>Infinit Soluções</Authors>
+    <Authors>Infinit Solucoes</Authors>
     <Product>Infinit.OpenSource.ApiClient</Product>
-    <PackageLicenseUrl>www.infinitsolucoes.com.br</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+    <Description>Project Open Source by Infinit Solutions</Description>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
