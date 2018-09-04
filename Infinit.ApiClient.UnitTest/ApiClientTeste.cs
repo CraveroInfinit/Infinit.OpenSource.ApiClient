@@ -10,11 +10,11 @@ namespace Infinit.ApiClient.UnitTest
         public void Test_PutJSON()
         {
             ApiModel.SendModel sendMessage = new ApiModel.SendModel();
-            sendMessage.id = 1;
-            sendMessage.values = "PUT";
+            sendMessage.Id = 1;
+            sendMessage.Values = "PUT";
 
             ApiModel.MessageModel returnMessageExpected = new ApiModel.MessageModel();
-            returnMessageExpected.message = string.Concat(sendMessage.id, " - ", Convert.ToString(sendMessage.values));
+            returnMessageExpected.message = string.Concat(sendMessage.Id, " - ", Convert.ToString(sendMessage.Values));
 
             ApiClient.APIClient _ApiClient = new APIClient();
             var response = (ApiModel.MessageModel)_ApiClient.PutJSON("https://infinitopensourceclienttestapi.azurewebsites.net/api/values", sendMessage, typeof(ApiModel.MessageModel)).Result.Result;
@@ -52,11 +52,11 @@ namespace Infinit.ApiClient.UnitTest
         public void Test_PostarJSON()
         {
             ApiModel.SendModel sendMessage = new ApiModel.SendModel();
-            sendMessage.id = 1;
-            sendMessage.values = "POST";
+            sendMessage.Id = 1;
+            sendMessage.Values = "POST";
 
             ApiModel.MessageModel returnMessageExpected = new ApiModel.MessageModel();
-            returnMessageExpected.message = string.Concat(sendMessage.id, " - ", Convert.ToString(sendMessage.values));
+            returnMessageExpected.message = string.Concat(sendMessage.Id, " - ", Convert.ToString(sendMessage.Values));
 
             ApiClient.APIClient _ApiClient = new APIClient();
             var response = (ApiModel.MessageModel)_ApiClient.PostarJSON("https://infinitopensourceclienttestapi.azurewebsites.net/api/values", sendMessage, typeof(ApiModel.MessageModel)).Result.Result;
