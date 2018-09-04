@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ApiClientTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ApiClientTesteJunior.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
