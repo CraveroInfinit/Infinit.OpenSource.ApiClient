@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace Infinit.ApiClient.UnitTest
 {
@@ -44,24 +45,103 @@ namespace Infinit.ApiClient.UnitTest
         //
         #endregion
 
+        #region TESTES JUNIOR
         [TestMethod]
-        public static void ApiClientTest_TestaGetJSON_ReturnResult()
+        public void ApiClientTest_TestaGetJSON_ReturnRespostaPadrao()
         {
-            TestGetJSON req = new TestGetJSON
+            var resultMethod = new ApiModel.MessageModel
             {
-                message = "messagem de teste"
+                message = "resposta padrao"
             };
 
-            APIClientResult result = APIClient.GetJSON(URLTest, null, typeof(TestGetJSON)).Result;
+            var API = new APIClient();
+            var response = (ApiModel.MessageModel)API.GetJSON(URLTest, new List<APIClientParametro>(), typeof(ApiModel.MessageModel)).Result.Result;
 
-
-
-
-
-
-
-
+            Assert.AreEqual(resultMethod.message, response.message);
         }
+        [TestMethod]
+        public void ApiClientTest_TestaGetByIdJSON_ReturnIdEncontrado()
+        {
+            var resultMethod = new ApiModel.MessageModel
+            {
+                message = "Id encontrado"
+            };
+
+            var API = new APIClient();
+            var response = (ApiModel.MessageModel)API.GetJSON(URLTest, 1, typeof(ApiModel.MessageModel), null).Result.Result;
+
+            Assert.AreEqual(resultMethod.message, response.message);
+        }
+        [TestMethod]
+        public void ApiClientTest_TestaGetByIdStringJSON_ReturnIdStringEncontrado()
+        {
+            var resultMethod = new ApiModel.MessageModel
+            {
+                message = "Id em string encontrado"
+            };
+
+            var API = new APIClient();
+            var response = (ApiModel.MessageModel)API.GetJSON(URLTest, "2", typeof(ApiModel.MessageModel), null).Result.Result;
+
+            Assert.AreEqual(resultMethod.message, response.message);
+        }
+        [TestMethod]
+        public void ApiClientTest_TestaPostJSON_ReturnNull()
+        {
+            var resultMethod = new ApiModel.SendModel
+            {
+                id = 321654,
+                values = "produto"
+            };
+
+            var API = new APIClient();
+            var response = API.PostarJSON(URLTest, resultMethod).Result;
+
+            Assert.AreEqual(null, response.Result);
+        }
+        [TestMethod]
+        public void ApiClientTest_TestaPostJSON_ReturnObjetoPostado()
+        {
+            var resultMethod = new ApiModel.SendModel
+            {
+                id = 321654,
+                values = "produto"
+            };
+
+            var API = new APIClient();
+            var response = (ApiModel.SendModel)API.PostarJSON(URLTest, resultMethod, typeof(ApiModel.SendModel)).Result.Result;
+
+            Assert.AreEqual(resultMethod.id, response.id);
+        }
+        [TestMethod]
+        public void ApiClientTest_TestaPutJSON_ReturnObjetoPostado()
+        {
+            var resultMethod = new ApiModel.SendModel
+            {
+                id = 321654,
+                values = "produto"
+            };
+
+            var API = new APIClient();
+            var response = (ApiModel.SendModel)API.PutJSON(URLTest, resultMethod, typeof(ApiModel.SendModel)).Result.Result;
+
+            Assert.AreEqual(resultMethod.id, response.id);
+        }
+        [TestMethod]
+        public void ApiClientTest_TestaDeleteJSON_ReturnObjetoPostado()
+        {
+            var resultMethod = new ApiModel.SendModel
+            {
+                id = 321654,
+                values = "produto"
+            };
+
+            var API = new APIClient();
+            var response = (ApiModel.SendModel)API.DeletarJSON(URLTest, 1, typeof(ApiModel.SendModel)).Result.Result;
+
+            Assert.AreEqual(new ApiModel.SendModel().id, response.id);
+        }
+        #endregion
     }
     public class TestGetJSON
     {

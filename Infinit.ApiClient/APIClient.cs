@@ -26,20 +26,12 @@ namespace Infinit.ApiClient
     }
     public class APIClient
     {
-        public async Task<APIClientResult> GetJSON(string URI, List<APIClientParametro> parametros, Type deserializeObjectType)
+        public async Task<APIClientResult> GetJSON(string URI, List<APIClientParametro> parametros, Type deserializeObjectType, string authorization = null)
         {
-            return await GetJSON(URI, parametros, deserializeObjectType, null);
-        }
-        public async Task<APIClientResult> GetJSON(string URI, List<APIClientParametro> parametros, Type deserializeObjectType, string authorization)
-        {
-
-
             var uriComParametros = new StringBuilder();
             uriComParametros.Append(URI);
             if (parametros != null)
             {
-
-
                 var parametroId = parametros.FirstOrDefault(p => p.Nome.ToUpper() == "ID");
                 if (parametroId != null)
                 {
@@ -184,7 +176,7 @@ namespace Infinit.ApiClient
                     return new APIClientResult() { Result = resultDeserialized, StatusCode = result.StatusCode };
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return null;
@@ -193,7 +185,8 @@ namespace Infinit.ApiClient
         }
         public async Task<APIClientResult> DeletarJSON(string URI, long idASerDeletado, Type deserializeObjectType, string authorization = "")
         {
-            var uriComParametros = string.Format("{0}/{1}", URI, idASerDeletado);
+
+            var uriComParametros = URI.EndsWith("/") ? string.Format("{0}{1}", URI, idASerDeletado) : string.Format("{0}/{1}", URI, idASerDeletado);
 
             var client = new HttpClient();
             if (!string.IsNullOrEmpty(authorization))
