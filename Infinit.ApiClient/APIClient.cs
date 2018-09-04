@@ -58,7 +58,7 @@ namespace Infinit.ApiClient
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", authorization);
             }
-            var result = await client.GetAsync(uriComParametros.ToString());
+            var result = client.GetAsync(uriComParametros.ToString()).Result;
             var contents = await result.Content.ReadAsStringAsync();
             if (result.StatusCode == HttpStatusCode.NotAcceptable)
             {
@@ -169,18 +169,27 @@ namespace Infinit.ApiClient
             }
             string jsonText = JsonConvert.SerializeObject(objetoASerPostado);
 
-            var result = await client.PutAsync(URI, new StringContent(jsonText, Encoding.UTF8, "application/json"));
-            var contents = await result.Content.ReadAsStringAsync();
-            if (result.StatusCode == HttpStatusCode.NotAcceptable)
+            try
             {
-                var resultDeserialized = JsonConvert.DeserializeObject(contents, typeof(MensagemErro));
-                return new APIClientResult() { Result = resultDeserialized, StatusCode = result.StatusCode };
+                var result = client.PutAsync(URI, new StringContent(jsonText, Encoding.UTF8, "application/json")).Result;
+                var contents = await result.Content.ReadAsStringAsync();
+                if (result.StatusCode == HttpStatusCode.NotAcceptable)
+                {
+                    var resultDeserialized = JsonConvert.DeserializeObject(contents, typeof(MensagemErro));
+                    return new APIClientResult() { Result = resultDeserialized, StatusCode = result.StatusCode };
+                }
+                else
+                {
+                    var resultDeserialized = JsonConvert.DeserializeObject(contents, deserializeObjectType);
+                    return new APIClientResult() { Result = resultDeserialized, StatusCode = result.StatusCode };
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var resultDeserialized = JsonConvert.DeserializeObject(contents, deserializeObjectType);
-                return new APIClientResult() { Result = resultDeserialized, StatusCode = result.StatusCode };
+
+                return null;
             }
+
         }
         public async Task<APIClientResult> DeletarJSON(string URI, long idASerDeletado, Type deserializeObjectType, string authorization = "")
         {
