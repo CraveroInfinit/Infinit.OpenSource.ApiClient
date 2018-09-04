@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>Infinit Soluções</Company>
+    <PackageId>Infinit.OpenSource.ApiClient</PackageId>
+    <Authors>Infinit Soluções</Authors>
+    <Product>Infinit.OpenSource.ApiClient</Product>
+    <PackageLicenseUrl>www.infinitsolucoes.com.br</PackageLicenseUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+</Project>
